@@ -8,7 +8,7 @@ str(df)
 #print few rows
 head(df)
 
-#rename CO2EmissionRate..mt.
+#rename CO2Emission Rate..mt.
 names(df)[3] <- "CO2"
 
 #print column names
