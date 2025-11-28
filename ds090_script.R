@@ -8,6 +8,9 @@ str(df)
 #print few rows
 head(df)
 
+#print column names
+colnames(df)
+
 # Convert CO₂ emissions column into numeric (important!)
 df$CO2EmissionRate..mt. <- as.numeric(df$CO2EmissionRate..mt.)
 
