@@ -17,6 +17,8 @@ colnames(df)
 # Convert CO₂ emissions column into numeric (important!)
 df$CO2 <- as.numeric(df$CO2)
 
+#Data set col Min,max,quartile,Mean,median,mode
+summary(df)
 
 # Count how many countries exist in each year
 table(df$Year)
