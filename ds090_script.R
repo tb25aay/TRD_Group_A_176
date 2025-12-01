@@ -5,9 +5,20 @@ df <- read.csv("tidy_format_co2_emission_dataset.csv")
 # Check the structure
 str(df)
 
-# Convert CO₂ emissions column into numeric (important!)
-df$CO2EmissionRate..mt. <- as.numeric(df$CO2EmissionRate..mt.)
+#print few rows
+head(df)
 
+#rename CO2Emission Rate..mt.
+names(df)[3] <- "CO2"
+
+#print column names
+colnames(df)
+
+# Convert CO₂ emissions column into numeric (important!)
+df$CO2 <- as.numeric(df$CO2)
+
+#Data set col Min,max,quartile,Mean,median,mode
+summary(df)
 
 # Count how many countries exist in each year
 table(df$Year)
@@ -28,7 +39,7 @@ combined <- rbind(df1990, df2021)
 
 
 # Histogram → helps justify use of t-test vs nonparametric test
-hist(combined$CO2EmissionRate..mt.,
+hist(combined$CO2,
      breaks = 30,
      main = "Distribution of CO₂ Emissions",
      xlab = "CO₂ Emission Rate (mt)",
@@ -37,7 +48,7 @@ hist(combined$CO2EmissionRate..mt.,
 
 # Boxplot → visual comparison of the two years
 
-boxplot(CO2EmissionRate..mt. ~ Group,
+boxplot(CO2 ~ Group,
         data = combined,
         col = c("skyblue", "orange"),
         main = "CO₂ Emissions in 1990 vs 2021",
@@ -46,8 +57,8 @@ boxplot(CO2EmissionRate..mt. ~ Group,
 
 
 # First, try the t-test
-t.test(CO2EmissionRate..mt. ~ Group, data = combined)
+t.test(CO2 ~ Group, data = combined)
 
 # If histogram shows data is NOT normal, use non-parametric test:
-wilcox.test(CO2EmissionRate..mt. ~ Group, data = combined)
+wilcox.test(CO2 ~ Group, data = combined)
 
