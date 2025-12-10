@@ -27,6 +27,21 @@ paired <- inner_join(CO2_1990, CO2_2021, by = "country") %>%
   mutate(diff = CO2_2021 - CO2_1990)
 
 # BOXPLOT
+png("boxplot_CO2_1990_2021.png")
+paired_long <- paired %>%
+  pivot_longer(cols = c(co2_1990, co2_2021),
+               names_to = "year",
+               values_to = "co2")
+
+paired_long$year <- recode(paired_long$year,
+                           "co2_1990" = "1990",
+                           "co2_2021" = "2021")
+
+boxplot(co2 ~ year, data = paired_long,
+        xlab="Year",
+        ylab="CO₂ emissions (metric tonnes)",
+        main="CO₂ Emissions in 1990 and 2021")
+dev.off()
 
 
 # HISTOGRAM
