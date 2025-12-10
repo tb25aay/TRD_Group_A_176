@@ -29,7 +29,7 @@ paired <- inner_join(CO2_1990, CO2_2021, by = "country") %>%
 # BOXPLOT
 png("boxplot_CO2_1990_2021.png")
 paired_long <- paired %>%
-  pivot_longer(cols = c(co2_1990, co2_2021),
+  pivot_longer(cols = c(CO2_1990, CO2_2021),
                names_to = "year",
                values_to = "co2")
 
@@ -61,3 +61,4 @@ hist(paired$diff, freq = FALSE, breaks = 20,
 curve(dnorm(x, mean = mean(paired$diff), sd = sd(paired$diff)),
       col = "red", lwd = 2, add = TRUE)
 dev.off()
+
